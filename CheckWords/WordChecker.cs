@@ -19,11 +19,11 @@ namespace Tools
 
       for (int i = 0; i <= words.Count-1; i++)
       {
-        resultsPalindromes += helper.IsPalindrome(words[i]) ? "\n" + $"Word{i + 1} is a palindrome." : "";
+        resultsPalindromes += helper.IsPalindrome(words[i]) ? "\n" + $"{words[i]} is a palindrome." : "";
 
         for (int j = i+1; j <= words.Count-1; j++)
         {
-          resultsAnagrams += helper.IsAnagram(words[i], words[j]) ? "\n" + $"Word{i + 1} is an anagram of word{j + 1}." : "";
+          resultsAnagrams += helper.IsAnagram(words[i], words[j]) ? "\n" + $"{words[i]} is an anagram of {words[j]}." : "";
         }
       }
 

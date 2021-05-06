@@ -10,12 +10,12 @@ namespace Helpers
     public bool IsAnagram(string word1, string word2)
     {
       //strip punctuation and make lower case
-      var word1Stripped = Regex.Replace(word1.ToLower(), @"[^a-z0-9]", "");
-      var word2Stripped = Regex.Replace(word2.ToLower(), @"[^a-z0-9]", "");
+      var word1Stripped = StripPunctuationMakeLowercase(word1);
+      var word2Stripped = StripPunctuationMakeLowercase(word2);
       
       //sort strings alphabetically and remove duplicate letters
-      var word1sorted = new String(word1Stripped.OrderBy(c => c).Distinct().ToArray());
-      var word2sorted = new String(word2Stripped.OrderBy(c => c).Distinct().ToArray());
+      var word1sorted = OrderString(word1Stripped);
+      var word2sorted = OrderString(word2Stripped);
 
       //compare strings
       return string.Compare(word1sorted, word2sorted) == 0;
@@ -24,13 +24,23 @@ namespace Helpers
     public bool IsPalindrome(string word)
     {
       //strip punctuation and make lower case
-      var wordStripped = Regex.Replace(word.ToLower(), @"[^a-z0-9]", "");
+      var wordStripped = StripPunctuationMakeLowercase(word);
 
       //reverse string
       var reverse = new String(wordStripped.Reverse().ToArray());
 
       //compare word with reverse
       return string.Compare(wordStripped, reverse) == 0;
+    }
+
+    private string StripPunctuationMakeLowercase(string word)
+    {
+      return Regex.Replace(word.ToLower(), @"[^a-z0-9]", "");
+    }
+
+    private string OrderString(string word)
+    {
+      return new String(word.OrderBy(c => c).ToArray());
     }
   }
 }
